@@ -24,6 +24,7 @@ pipeline {
                     echo "${TOOL}"
                     echo "${PROJECT_NAME}"
                     ls
+                    ls -ltra
                 '''
             }
         }
