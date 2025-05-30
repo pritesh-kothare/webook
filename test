@@ -43,7 +43,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'ls'
-                sh 'bc <<< "10 + 5"'  // Simulate a calculation
+                sh 'ls -ltra'
                 sh 'lscpu'
             }
         }
