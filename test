@@ -23,7 +23,7 @@ pipeline {
                     echo "${USER_NAME}"
                     echo "${TOOL}"
                     echo "${PROJECT_NAME}"
-                    sh ls
+                    ls
                 '''
             }
         }
@@ -33,15 +33,17 @@ pipeline {
                 message "Please confirm before test"
             }
             steps {
-                sh 'echo "${PROJECT}"'
-                sh 'echo "Build ID is ${BUILD_ID}"'
+                sh '''
+                    echo "${PROJECT}"
+                    echo "Build ID is ${BUILD_ID}"
+                '''
             }
         }
 
         stage('build') {
             steps {
                 sh 'ls'
-                sh 'calc'
+                sh 'bc <<< "10 + 5"'  // Simulate a calculation
                 sh 'lscpu'
             }
         }
