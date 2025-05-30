@@ -1,19 +1,22 @@
 pipeline {
     agent any
+
     environment {
-        USER_NAME='pritesh'
-        PROJECT_NAME='DEVOPS'
-        PROJECT='multiple'
-        TOOL='jenkins'
+        USER_NAME = 'pritesh'
+        PROJECT_NAME = 'DEVOPS'
+        PROJECT = 'multiple'
+        TOOL = 'jenkins'
     }
+
     parameters {
-  string description: 'enter your gender', name: 'UserGender'
-  choice choices: ['Mail', 'female'], description: 'please select gender', name: 'selected Gender'
+        string(name: 'UserGender', description: 'Enter your gender')
+        choice(name: 'selectedGender', choices: ['Male', 'Female'], description: 'Please select gender')
     }
+
     stages {
-        stage ('checkout') {
+        stage('checkout') {
             input {
-                message "please select before checkout"
+                message "Please confirm before checkout"
             }
             steps {
                 sh '''
@@ -21,35 +24,37 @@ pipeline {
                     echo "${TOOL}"
                     echo "${PROJECT_NAME}"
                 '''
-
             }
         }
-        stage ('test') {
-            input{
-                message "please select before test"
+
+        stage('test') {
+            input {
+                message "Please confirm before test"
             }
             steps {
                 sh 'echo "${PROJECT}"'
-                sh 'echo "${BUILD_ID}"'
-                
+                sh 'echo "Build ID is ${BUILD_ID}"'
             }
         }
-        stage ('build') {
+
+        stage('build') {
             steps {
                 sh 'ls'
             }
         }
     }
-    post {
-      success {
-         echo "build complte successfull"
-      }
 
-      failed {
-         echo "build was failed"
-      }
-      aborted{
-         echo "build was aborted"
-      }
+    post {
+        success {
+            echo "Build completed successfully"
+        }
+
+        failure {
+            echo "Build failed"
+        }
+
+        aborted {
+            echo "Build was aborted"
+        }
     }
 }
