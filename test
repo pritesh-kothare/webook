@@ -42,7 +42,6 @@ pipeline {
                 sh 'ls'
                 sh 'calc'
                 sh 'lscpu'
-                sh 'ls -ltra'
             }
         }
     }
