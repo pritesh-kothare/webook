@@ -1,64 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        USER_NAME = 'pritesh'
-        PROJECT_NAME = 'DEVOPS'
-        PROJECT = 'multiple'
-        TOOL = 'jenkins'
-    }
-
-    parameters {
-        string(name: 'UserGender', description: 'Enter your gender')
-        choice(name: 'selectedGender', choices: ['Male', 'Female'], description: 'Please select gender')
-    }
-
     stages {
-        stage('checkout') {
-            input {
-                message "Please confirm before checkout"
-            }
+        stage('Hello') {
             steps {
-                sh '''
-                    echo "${USER_NAME}"
-                    echo "${TOOL}"
-                    echo "${PROJECT_NAME}" 
-                '''
+                echo 'Hello, World!'
             }
-        }
-
-        stage('test') {
-            input {
-                message "Please confirm before test"
-            }
-            steps {
-                sh '''
-                    echo "${PROJECT}"
-                    echo "Build ID is ${BUILD_ID}"
-                '''
-            }
-        }
-
-        stage('build') {
-            steps {
-                sh 'ls'
-                sh 'ls -ltra'
-                sh 'lscpu'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo "Build completed successfully"
-        }
-
-        failure {
-            echo "Build failed"
-        }
-
-        aborted {
-            echo "Build was aborted"
         }
     }
 }
