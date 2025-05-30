@@ -22,9 +22,7 @@ pipeline {
                 sh '''
                     echo "${USER_NAME}"
                     echo "${TOOL}"
-                    echo "${PROJECT_NAME}"
-                    ls
-                    ls -ltra
+                    echo "${PROJECT_NAME}" 
                 '''
             }
         }
